@@ -80,7 +80,7 @@ header {
 .filter-global-error,
 .new-element-form-field-error,
 .filter-elements-form-field-error {
-  width: min-content;
+  width: 100%;
   color: red;
   font-size: 15px;
 }
@@ -177,6 +177,10 @@ input[type="number"] {
   font-size: 15px;
   font-weight: 300;
   cursor: pointer;
+}
+
+.new-element-button-form {
+  margin-left: 5px;
 }
 
 .filter-elements-button-field {

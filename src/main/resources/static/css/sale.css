@@ -101,6 +101,11 @@ header {
  color: red;
 }
 
+.error {
+  margin-top: 5px;
+  color: red;
+}
+
 .new-element-form-field-error {
   margin-top: 5px;
 }

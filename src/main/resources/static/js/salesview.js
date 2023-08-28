@@ -14,6 +14,12 @@ $(document).ready(function () {
   to.value = new Date().toISOString().split("T")[0];
   var current_date = new Date().toISOString().split("T")[0];
 
+  var register = document.querySelector("#register-title");
+
+  if(window.location.search.includes("from") && window.location.search.includes("to")) {
+    register.textContent += ` desde ${window.location.search.match(/from=(.{10})/)[1]} hasta ${window.location.search.match(/to=(.{10})/)[1]}`
+  }
+
   from.addEventListener("input", () => {
     if (from.value > current_date) {
       error_2.style = "display: block;";

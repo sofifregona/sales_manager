@@ -56,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void save(Product p) throws Excep {
+		System.out.println(p.getId());
 		if (p.getId() == null) {
 			if(!repo.findByCode(p.getCode()).isEmpty())
 				throw new Excep("Ya existe un producto con ese código");
@@ -63,13 +64,10 @@ public class ProductServiceImpl implements ProductService {
 				throw new Excep("Ya existe un producto con ese nombre");
 			else
 				repo.save(p);
-		} else if (repo.findById(p.getId()).get().getId() != p.getId()){
-			if(!repo.findByCode(p.getCode()).isEmpty())
-				throw new Excep("Ya existe un producto con ese código");
-			if(!repo.findByName(p.getName()).isEmpty())
-				throw new Excep("Ya existe un producto con ese nombre");
-			else
-				repo.save(p);
+		} else if (repo.findByCode(p.getCode()).get(0).getId() != p.getId()){
+			throw new Excep("Ya existe un producto con ese código");
+		} else if (repo.findByName(p.getName()).get(0).getId() != p.getId()) {
+			throw new Excep("Ya existe un producto con ese nombre");
 		} else {
 			repo.save(p);
 		}
