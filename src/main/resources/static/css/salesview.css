@@ -10,11 +10,14 @@ header {
   align-items: center;
 }
 
-.return-link,
-.go-back {
+.return-link {
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+.return-link:visited {
+  color: #e59827
 }
 
 .material-symbols-outlined {

@@ -19,7 +19,7 @@ public interface ISaleRepo extends JpaRepository<Sale, Long> {
 	@Query("SELECT s FROM Sale s WHERE DATE(s.dateTime) = ?1")
 	List<Sale> findByDate(LocalDate date);
 	
-	@Query("SELECT s FROM Sale s WHERE s.open = 1")
+	@Query("SELECT s FROM Sale s WHERE s.open = 1 ORDER BY s.bartable.number")
 	List<Sale> findAllOpen();
 	
 	@Query("SELECT s.discount, SUM(s.total) " +
