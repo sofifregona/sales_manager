@@ -146,7 +146,7 @@
 				</table>
 				<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
 				<div class="list-elements" th:if="${editSaleFormBean.id == null}">
-					<h3 th:text="'Lista de mesas'" class="list-elements-subtitle"/>
+					<h3 th:text="'Lista de mesas con ventas activas'" class="list-elements-subtitle"/>
 					<table style="align-self: center;">
 						<thead>
 							<tr>
