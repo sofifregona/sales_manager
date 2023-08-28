@@ -29,89 +29,6 @@
     
     	<h3 th:text="'GESTIONAR PRODUCTOS'" class="principal-title"/>
 		<hr>
-		<div class="filter-elements">
-			<h3 th:text="'Aplicar filtro'"  class="filter-elements-subtitle"/>
-			<form th:action="@{/product}" th:object="${findFormBean}" method="post" class="filter-elements-form">	
-				
-				<table style="align-self: center;" class="filter-elements-table">
-					<tbody>
-						<tr class="filter-elements-form-field" id="code-filter">
-							<td><label th:text="'Código:'" class="filter-elements-label"/></td>
-							<td><input type="text" th:field="*{code}" class="filter-elements-input" autocomplete="off"/></td> 		
-						</tr>
-						<tr class="filter-elements-form-field" id="name-filter">
-							<td><label th:text="'Nombre:'" class="filter-elements-label"/></td>
-							<td><input type="text" th:field="*{name}" class="filter-elements-input" autocomplete="off"/></td> 		
-						</tr>
-						<tr class="filter-elements-form-field" id="brand-filter">
-							<td><label th:text="'Marca:'" class="filter-elements-label"/></td>
-							<td>
-								<select th:field="*{idBrand}" class="filter-elements-input">
-									<option th:value="''" th:text="''"></option>
-									<option th:each="b : ${allBrands}" 
-										th:value="${b.id}" 
-										th:text="${b.name}"></option>
-								</select>
-							</td>				
-						</tr>
-						<tr class="filter-elements-form-field" id="category-filter">
-							<td><label th:text="'Categoría:'" class="filter-elements-label"/></td>
-							<td>
-								<select th:field="*{idCategory}" class="filter-elements-input">
-									<option th:value="''" th:text="''"></option>
-									<option th:each="c : ${allCategories}" 
-										th:value="${c.id}" 
-										th:text="${c.name}"></option>
-								</select>
-							</td>
-						</tr>
-						<tr class="filter-elements-form-field">
-							<td><button type="submit" name="filter" value="filter_forFind" class="filter-elements-button-form">Filtrar</button></td>
-						</tr>
-						<tr>
-							<td><button type="submit" name="filter" value="return_forFind" class="filter-elements-button-form"/>Ver todo</button></td>
-						</tr>        
-					</tbody>
-					<tfoot class="new-element-form-field-errors">
-						<tr><td><p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error filter-global-error" /></td></tr>
-						<tr><td><p th:if="${#fields.hasErrors('code')}" th:errorclass="error" th:errors="*{code	}" class="filter-elements-form-field-error"/></td></tr>
-						<tr><td><p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="filter-elements-form-field-error"/></td></tr>
-					</tfoot>
-				</table>
-				<table class="new-element-buttons">
-					
-				</table>
-			</form>
-		</div>
-		<div class="list-elements">
-			<h3 th:text="'Lista de productos'" class="list-elements-subtitle"/>
-			<table style="align-self: center;">
-				<thead>
-				<tr>
-					<th id="code-th"><label th:text="Código" class="table-head-field"/></th>
-					<th id="name-th"><label th:text="Nombre" class="table-head-field"/></th>
-					<th id="brand-th"><label th:text="Marca" class="table-head-field"/></th>
-					<th id="category-th"><label th:text="Categoría" class="table-head-field"/></th>
-					<th id="price-th"><label th:text="Precio" class="table-head-field"/></th>
-					<th id="action-th"><label th:text="Acciones" class="table-head-actions"/></th>
-					<th id="aux-th"></th>
-				</tr>
-				</thead>
-				<tbody>
-					<tr th:each="p : ${allProducts}" >
-						<td id="code-td" th:text="${{p.code}}" class="list-element"></td>
-						<td id="name-td" th:text="${{p.name}}" class="list-element"></td>
-						<td id="brand-td" th:text="${{p.brand != null ? p.brand.name : ''}}" class="list-element"></td>
-						<td id="category-td" th:text="${{p.category != null ? p.category.name : ''}}" class="list-element"></td>
-						<td id="price-td" th:text="${{p.price}}" class="list-element"></td>
-						<td id="action-td" class="list-element-buttons">
-							<button class="button-action"><a th:href="@{/product/{id}/edit(id=${p.id})}"  class="link-action">Editar</a></button>
-							<button class="button-action"><a th:href="@{/product/{id}/delete(id=${p.id})}"  class="link-action delete-action" onclick="return confirm('¿Está seguro que desea eliminar este producto?')">Borrar</a></button>
-						</td>  
-					</tr>
-				</tbody>
-			</table>	
-		</div>
 		<div class="new-element">
 		    <h3 th:text="${editFormBean.id} ? 'Editar producto':'Registrar producto'" class="new-element-subtitle"/>
 			<form  th:action="@{/product}" th:object="${editFormBean}" method="post" class="new-element-form">
@@ -169,6 +86,90 @@
 			      	</tr>
 				</table>
 			</form>			
+		</div>
+		
+		<div class="list-elements">
+			<h3 th:text="'Lista de productos'" class="list-elements-subtitle"/>
+			<table style="align-self: center;">
+				<thead>
+				<tr>
+					<th id="code-th"><label th:text="Código" class="table-head-field"/></th>
+					<th id="name-th"><label th:text="Nombre" class="table-head-field"/></th>
+					<th id="brand-th"><label th:text="Marca" class="table-head-field"/></th>
+					<th id="category-th"><label th:text="Categoría" class="table-head-field"/></th>
+					<th id="price-th"><label th:text="Precio" class="table-head-field"/></th>
+					<th id="action-th"><label th:text="Acciones" class="table-head-actions"/></th>
+					<th id="aux-th"></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${allProducts}" >
+						<td id="code-td" th:text="${{p.code}}" class="list-element"></td>
+						<td id="name-td" th:text="${{p.name}}" class="list-element"></td>
+						<td id="brand-td" th:text="${{p.brand != null ? p.brand.name : ''}}" class="list-element"></td>
+						<td id="category-td" th:text="${{p.category != null ? p.category.name : ''}}" class="list-element"></td>
+						<td id="price-td" th:text="${{p.price}}" class="list-element"></td>
+						<td id="action-td" class="list-element-buttons">
+							<button class="button-action"><a th:href="@{/product/{id}/edit(id=${p.id})}"  class="link-action">Editar</a></button>
+							<button class="button-action"><a th:href="@{/product/{id}/delete(id=${p.id})}"  class="link-action delete-action" onclick="return confirm('¿Está seguro que desea eliminar este producto?')">Borrar</a></button>
+						</td>  
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+		<div class="filter-elements">
+			<h3 th:text="'Aplicar filtro'"  class="filter-elements-subtitle"/>
+			<form th:action="@{/product}" th:object="${findFormBean}" method="post" class="filter-elements-form">	
+				
+				<table style="align-self: center;" class="filter-elements-table">
+					<tbody>
+						<tr class="filter-elements-form-field" id="code-filter">
+							<td><label th:text="'Código:'" class="filter-elements-label"/></td>
+							<td><input type="text" th:field="*{code}" class="filter-elements-input" autocomplete="off"/></td> 		
+						</tr>
+						<tr class="filter-elements-form-field" id="name-filter">
+							<td><label th:text="'Nombre:'" class="filter-elements-label"/></td>
+							<td><input type="text" th:field="*{name}" class="filter-elements-input" autocomplete="off"/></td> 		
+						</tr>
+						<tr class="filter-elements-form-field" id="brand-filter">
+							<td><label th:text="'Marca:'" class="filter-elements-label"/></td>
+							<td>
+								<select th:field="*{idBrand}" class="filter-elements-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="b : ${allBrands}" 
+										th:value="${b.id}" 
+										th:text="${b.name}"></option>
+								</select>
+							</td>				
+						</tr>
+						<tr class="filter-elements-form-field" id="category-filter">
+							<td><label th:text="'Categoría:'" class="filter-elements-label"/></td>
+							<td>
+								<select th:field="*{idCategory}" class="filter-elements-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="c : ${allCategories}" 
+										th:value="${c.id}" 
+										th:text="${c.name}"></option>
+								</select>
+							</td>
+						</tr>
+						<tr class="filter-elements-form-field">
+							<td><button type="submit" name="filter" value="filter_forFind" class="filter-elements-button-form">Filtrar</button></td>
+						</tr>
+						<tr>
+							<td><button type="submit" name="filter" value="return_forFind" class="filter-elements-button-form"/>Ver todo</button></td>
+						</tr>        
+					</tbody>
+					<tfoot class="new-element-form-field-errors">
+						<tr><td><p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error filter-global-error" /></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('code')}" th:errorclass="error" th:errors="*{code	}" class="filter-elements-form-field-error"/></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="filter-elements-form-field-error"/></td></tr>
+					</tfoot>
+				</table>
+				<table class="new-element-buttons">
+					
+				</table>
+			</form>
 		</div>
 	</div>
 	
