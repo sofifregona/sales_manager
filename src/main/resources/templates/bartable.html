@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales manager - Gestionar mesas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- Agregados de estilo -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/simple_entities.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<div class="principal">
+		<header>
+			<a th:href="@{/}" class="return-link">
+				<span class="material-symbols-outlined">west</span>&nbspMenú
+			</a>
+			<div class="starter-template">
+				<img class="logo" th:src="@{/img/logo mega sombra.png}" />
+			</div>
+		</header>
+
+		<h3 th:text="'GESTIONAR MESAS'" class="principal-title"/>
+		<hr>
+		<div class="list-elements">
+			<h3 th:text="'Lista de mesas'" class="list-elements-subtitle"/>
+			<table style="align-self: center;">
+				<thead>
+					<tr>
+						<th ><label th:text="Número" class="table-head-field"/></th>
+						<th ><label th:text="Acciones" class="table-head-actions"/></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="b : ${allBartables}" >
+						<td th:text="${b.number}" class="list-element"></td>
+						<td class="list-element-buttons">
+							<button class="button-action"><a th:href="@{/bartable/{id}/edit(id=${b.id})}" class="link-action" >Editar</a></button>
+							<button class="button-action"><a th:href="@{/bartable/{id}/delete(id=${b.id})}" class="link-action delete-link" onclick="return confirm('¿Está seguro que desea eliminar esta mesa?')">Borrar</a></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+		<div class="new-element">
+			<h3 th:text="${editFormBean.id} ? 'Editar mesa':'Nueva mesa'" class="new-element-subtitle"/>
+			<form  th:action="@{/bartable}" th:object="${editFormBean}" method="post" class="new-element-form">
+				
+				<input type="hidden" id="id" th:field="*{id}">
+				<table style="align-self: center;">
+					<tr class="new-element-form-field">
+						<td class="new-element-label"><label th:text="'Número:'" /></td>
+						<td><input type="number" th:field="*{number}" class="new-element-input" autocomplete="off"/></td> 
+						<td th:if="${#fields.hasErrors('number')}"><p th:errorclass="error" th:errors="*{number}" class="new-element-form-field-error"/> </td>
+					</tr>
+				</table>
+				<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error global-error" />
+				<table class="new-element-buttons">
+					<tr>
+						<td><button type="submit" name="edit" value="accept_forEdit" class="new-element-button-form">Guardar</button></td>
+						<td th:if="${editFormBean.id != null}"><button type="submit" name="edit" value="return_forEdit" class="new-element-button-form"/>Cancelar</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+
+<footer>Megamultiservicios - Gestor de ventas 1.0.0</footer>
+
+</html>	

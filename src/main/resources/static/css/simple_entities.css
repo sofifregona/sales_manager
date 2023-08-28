@@ -1,0 +1,224 @@
+.principal {
+  width: 400px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.return-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.material-symbols-outlined {
+    color:#e59827;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+  margin: 0;
+}
+
+.principal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 20px 0px 0px 0px;
+}
+
+.new-element {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.new-element-subtitle,
+.list-elements-subtitle {
+  text-align: left;
+  margin-top: 10px;
+  width: 100%;
+  font-weight: 700;
+}
+
+.new-element-form {
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: self-end;
+}
+
+.global-error, .new-element-form-field-error {
+    width: 100%;
+    color:red;
+    font-size: 15px;
+}
+
+.global-error {
+    margin-top: 5px;
+}
+
+.new-element-form-field-error {
+    margin-top: 5px;
+}
+
+.new-element form table {
+    width: 100%;
+}
+
+.new-element-form-field  {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: min-content;
+}
+
+.new-element-form-field-error, .new-element-form-field td {
+  width: 100%;
+}
+
+.new-element-label {
+  width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.new-element-input {
+  width: 100%;
+  outline: none;
+  border: solid 1px #484847;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.new-element-buttons {
+   display: flex; 
+   justify-content: right;
+   margin-top: 10px;
+}
+
+.new-element-buttons tr td {
+    width: 100px;
+}
+
+.new-element-button-form {
+  background-color: #e59827;
+  border-radius: 8px;
+  border: none;
+  width: 100px;
+  padding: 5px;
+  color: #fffeee;
+  font-family: "Nunito";
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.list-elements {
+  width: 100%;  
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.list-elements table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border-left: 1px solid #8b8b8a;
+  border-bottom : 1px solid #8b8b8a;
+  border-right: 1px solid #8b8b8a;
+}
+
+.list-elements table thead {
+  font-weight: 600;
+}
+
+.list-elements table thead tr th:first-child {
+    border-right: solid 1px #fffeee;
+}
+
+.list-elements table thead tr th {
+  background-color: #e59827;
+  padding: 5px 15px 5px 5px;
+  text-align: center;
+  color: #fffeee;
+}
+
+.table-head-field {
+  width: 20px;
+}
+
+.list-elements table tbody {
+  display: block;
+  max-height: 200px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.list-elements table thead,
+.list-elements table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.list-elements table thead {
+  text-align: left;
+}
+
+.list-element, .list-element-buttons {
+  width: 20px;
+  padding: 3px;
+  text-align: center;
+  background-color: none;
+  font-size: 15px;
+}
+
+.button-action {
+  background-color: #fffeee;
+  border: none;
+  text-align: center;
+  padding-left: 20px;
+}
+
+.list-element-buttons{
+    margin-left: 10px;
+}
+
+.link-action {
+  text-decoration: none;
+  background-color: none;
+  border: none;
+  color: #e59827;
+}
+
+.link-action:visited, .return-link:visited {
+  color: #e59827;
+}

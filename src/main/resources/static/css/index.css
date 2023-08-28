@@ -1,0 +1,50 @@
+header,
+.starter-template {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.principal-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 10px 0px 0px 0px;
+  }
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.button-menu {
+  margin-top: 10px;
+  background-color: #e59827;
+  border-radius: 8px;
+  border: none;
+  padding: 5px;
+  color: #fffeee;
+  font-family: "Nunito";
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  width: 100%;
+}
+
+.link-action {
+  text-decoration: none;
+  background-color: none;
+  border: none;
+  color: #ffffff;
+  width: 80%;
+}
+
+.link-action:visited {
+  color: #ffffff;
+}

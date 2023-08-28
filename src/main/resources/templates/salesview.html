@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales manager - Ventas registradas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Agregados de estilo -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/salesview.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<div class="principal">
+		<header>
+			<a th:href="@{/}" class="return-link">
+				<span class="material-symbols-outlined">west</span>&nbspMenú
+			</a>
+			<div class="starter-template">
+				<img class="logo" th:src="@{/img/logo mega sombra.png}" />
+			</div>
+		</header>
+		
+		<h3 th:text="'VENTAS REGISTRADAS'" class="principal-title"/>
+		<hr>
+		<div class="filter-sales">
+			<h3 th:text="'Seleccionar fechas'" class="filter-sales-subtitle"/>
+			<form th:action="@{/salesview}" th:object="${findFormBean}" method="post" class="filter-sales-form">	
+				<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+				<table style="align-self: center;" class="filter-table">
+					<tbody>
+						<tr class="filter-table-tr" id="from-tr">
+							<td class="filter-table-label"><label th:text="Desde" /></td>
+							<td class="filter-table-input"><input id="from-input" type="date" th:field="*{from}" /></td> 
+						</tr>
+						<tr class="filter-table-tr" id="to-tr">
+							<td class="filter-table-label"><label th:text="Hasta" /></td>
+							<td class="filter-table-input"><input id="to-input" type="date" th:field="*{to}" /></td> 
+						</tr>
+						<tr class="filter-table-tr" id="filter-tr">
+							<td class="filter-table-label"><label th:text="'Filtrar por'" /></td>
+							<td class="filter-table-input">
+								<select th:field="*{filter}">
+									<option th:value="product" th:text="'Producto'"></option>
+									<option th:value="category" th:text="'Categoría'"></option>
+									<option th:value="brand" th:text="'Marca'"></option>
+								</select>
+							</td>
+						</tr>
+						<tr class="filter-table-tr" id="order-tr">
+							<td class="filter-table-label"><label th:text="'Ordenar por'" /></td>
+							<td class="filter-table-input">
+								<select th:field="*{order}" id="select-order">
+									<option id="profits-op" th:value="desc_profits" th:text="'Más ingresos generados'"></option>
+									<!--<option th:value="asc_profits" th:text="'Menos ingresos generados'"></option>-->
+									<option id="units-op" th:value="desc_units" th:text="'Más unidades vendidas'"></option>
+									<!--<option th:value="asc_untis" th:text="'Menos unidades vendidas'"></option>-->
+								</select>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<td th:if="${#fields.hasErrors('from')}"><p th:errorclass="error" th:errors="*{from}" /> </td>
+						<td th:if="${#fields.hasErrors('from')}"><p th:errorclass="error" th:errors="*{to}" /> </td>
+					</tfoot>
+				</table>
+				<p class="error-dates" id="error_1" style="display: none;">La fecha inicial no puede ser posterior a la fecha final.</p>
+				<p class="error-dates" id="error_2" style="display: none;">La fecha inicial no puede ser posterior a la fecha actual.</p>
+				<p class="error-dates" id="error_3" style="display: none;">La fecha final no puede ser posterior a la fecha actual.</p>
+				<table class="filter-product-buttons">
+					<tr class="filter-product-buttons-tr" id="button-tr">
+						<td><button class="filter-product-button" type="submit" name="filter_by" value="filter_forFind" />Buscar</button></td>
+					</tr>        
+				</table>
+			</form>
+		</div>
+		
+		<div class="list-sales">
+			<h3 th:text="'Registros'" class="list-sales-subtitle"/>
+			<table id="filtered_by_product" style="align-self: center;" th:if="${findFormBean.filter == 'product'}">
+				<thead>
+				<tr>
+					<th id="code-th"><label th:text="Código" class="list-sales-th-label"/></th>
+					<th id="product-th"><label th:text="Producto" class="list-sales-th-label"/></th>
+					<th id="brand-th"><label th:text="Marca" class="list-sales-th-label"/></th>
+					<th id="category-th"><label th:text="Categoría" class="list-sales-th-label"/></th>
+					<th id="units-th"><label th:text="'Un.'" class="list-sales-th-label"/></th>
+					<th id="disc-th"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="sp : ${allSalesFiltered}" >
+						<td id="code-td" th:text="${{sp[1]}}" class="list-sales-element"></td>
+						<td id="product-td" th:text="${{sp[2]}}" class="list-sales-element"></td>
+						<td id="brand-td" th:text="${{sp[3]}}" class="list-sales-element"></td>
+						<td id="category-td" th:text="${{sp[4]}}" class="list-sales-element"></td>
+						<td id="units-td" th:text="${{sp[5]}}" class="list-sales-element"></td>
+						<td id="disc-td" th:text="${{sp[6]}}" class="list-sales-element"></td>
+						<td id="nondisc-td" th:text="${{sp[7]}}" class="list-sales-element"></td>
+						<td id="total-td" th:text="${{sp[8]}}" class="list-sales-element"></td>
+					</tr>
+				</tbody>
+				<tfoot class="list-element-total-section">
+					<tr>
+						<td id="aux1" class="aux-td"></td>
+						<td id="aux2" class="aux-td"></td>
+						<td id="aux3" class="aux-td"></td>
+						<td id="aux4" class="aux-td"></td>
+						<td id="aux5" class="aux-td"></td>
+						<td id="total-disc" class="aux-td total-disc" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-nondisc" class="aux-td total-nondisc" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final" class="aux-td total-final" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+					</tr>
+				</tfoot>
+			</table>
+			
+			<table id="filtered_by_brand" style="align-self: center;" th:if="${findFormBean.filter == 'brand'}">
+				<thead>
+				<tr>
+					<th id="brand-th-b"><label th:text="Marca" class="list-sales-th-label"/></th>
+					<th id="units-th-b"><label th:text="'Un.'" class="list-sales-th-label"/></th>
+					<th id="disc-th-b"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th-b"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th-b"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="sp : ${allSalesFiltered}" >
+						<td id="brand-td-b" th:text="${{sp[1] != null ? sp[1] : 'S/Marca'}}" class="list-sales-element"></td>
+						<td id="units-td-b" th:text="${{sp[2]}}" class="list-sales-element" ></td>
+						<td id="disc-td-b" th:text="${{sp[3]}}" class="list-sales-element" ></td>
+						<td id="nondisc-td-b" th:text="${{sp[4]}}" class="list-sales-element" ></td>
+						<td id="total-td-b" th:text="${{sp[5]}}" class="list-sales-element" ></td>	
+					</tr>
+				</tbody>
+				<tfoot class="list-element-total-section">
+					<tr>
+						<td id="aux1-b" class="aux-td"></td>
+						<td id="aux2-b" class="aux-td"></td>
+						<td id="total-disc-b" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-nondisc-b" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final-b" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+					</tr>
+				</tfoot>
+			</table>		
+			
+			<table id="filtered_by_category" style="align-self: center;" th:if="${findFormBean.filter == 'category'}">
+				<thead>
+				<tr>
+					<th id="category-th-c"><label th:text="Categoría" class="list-sales-th-label"/></th>
+					<th id="units-th-c"><label th:text="'Un.'" class="list-sales-th-label"/></th>
+					<th id="disc-th-c"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th-c"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th-c"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="sp : ${allSalesFiltered}" >
+						<td id="category-td-c" th:text="${{sp[1] != null ? sp[1] : 'S/Categoría'}}" class="list-sales-element"></td>
+						<td id="units-td-c" th:text="${{sp[2]}}" class="list-sales-element"></td>
+						<td id="disc-td-c" th:text="${{sp[3]}}" class="list-sales-element"></td>
+						<td id="nondisc-td-c" th:text="${{sp[4]}}" class="list-sales-element"></td>
+						<td id="total-td-c" th:text="${{sp[5]}}" class="list-sales-element"></td>
+						
+					</tr>
+				</tbody>
+				<tfoot class="list-element-total-section">
+					<tr>
+						<td id="aux1-c" class="aux-td"></td>
+						<td id="aux2-c" class="aux-td"></td>
+						<td id="total-disc-c" class="aux-td total-disc" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-nondisc-c" class="aux-td total-nondisc" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final-c" class="aux-td total-final" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+					</tr>
+				</tfoot>
+			</table>
+
+			<table id="filtered_by_payment_method" style="align-self: center;">
+				<thead>
+				<tr>
+					<th ><label th:text="'Método de pago'" /></th>
+					<th ><label th:text="'Ingresos totales'" /></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pp : ${summaryFiltered}" >
+						<td th:text="${{pp[0]}}" th:id="${{pp[0]}}"></td>
+						<td th:text="${{pp[1]}}"></td>			    
+					</tr>
+				</tbody>
+				<tfoot class="list-element-total-section">
+					<tr>
+						<td></td>
+						<td id="total-payments" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+					</tr>
+				</tfoot>
+			</table>	
+		</div>
+	</div>
+	<script th:src="@{/js/salesview.js}"></script>
+</body>
+
+<footer>Megamultiservicios - Gestor de ventas 1.0.0</footer>
+
+</html>	

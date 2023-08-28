@@ -1,0 +1,23 @@
+.selectize-control.single .selectize-input {
+    box-shadow: 0;
+    background-color: #ffffff;
+    background-image: none;
+    border-radius: 8px;
+    border: solid 1px #484847;
+}
+
+.selectize-input {
+    padding: 3px 5px;
+}
+
+.selectize-dropdown .selected {
+    background-color: #00B6C9;
+}
+
+.selectize-dropdown .active:not(.selected) {
+    background-color: #00b5c936;
+}
+
+.selectize-dropdown {
+    border:none;
+}

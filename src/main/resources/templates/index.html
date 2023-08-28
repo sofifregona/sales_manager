@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales manager - Menú</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- Agregados de estilo -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<div class="principal">
+		<header>
+			<div class="starter-template">
+				<img class="logo" th:src="@{/img/logo mega sombra.png}" />
+			</div>
+		</header>
+
+		<h3 th:text="'MENÚ'" class="principal-title"/>
+		<hr>
+    <div class="menu">
+      <a class="link-action" th:href="@{/sale}"><button class="button-menu">Ventas</button></a>
+      <a class="link-action" th:href="@{/salesview}"><button class="button-menu">Registros</button></a>
+      <a class="link-action" th:href="@{/product}"><button class="button-menu">Gestionar productos</button></a>
+      <a class="link-action" th:href="@{/payment}"><button class="button-menu">Gestionar métodos de pago</button></a>
+      <a class="link-action" th:href="@{/brand}"><button class="button-menu">Gestionar marcas</button></a>
+      <a class="link-action" th:href="@{/bartable}"><button class="button-menu">Gestionar mesas</button></a>
+      <a class="link-action" th:href="@{/category}"><button class="button-menu">Gestionar categorías</button></a>
+    </div>
+	</div>
+</body>
+
+<footer>Megamultiservicios - Gestor de ventas 1.0.0</footer>

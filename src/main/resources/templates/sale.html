@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Sales manager - Gestionar ventas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Agregados de estilo -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sale.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<link
+  		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+		integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	/>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+		integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/selectize.css}">
+</head>
+
+<body>
+	<div class="principal">
+		<header>
+			<a th:href="@{/}" class="return-link">
+				<span class="material-symbols-outlined">west</span>&nbspMenú
+			</a>
+			<a th:href="@{/sale}" class="go-back">
+				<span class="material-symbols-outlined">west</span>&nbspVer todas las mesas
+			</a>
+			<div class="starter-template">
+				<img class="logo" th:src="@{/img/logo mega sombra.png}" />
+			</div>
+		</header>
+		
+		<h3 th:text="'GESTIONAR VENTAS'" class="principal-title"/>
+		<hr>
+		<div class="add-product">
+			<h3 th:text="'MESA '+${bartable}" th:if="${editSaleFormBean.id} != null" class="add-product-subtitle"/>
+			<form  th:action="@{/sale}" th:object="${editProductFormBean}" method="post" th:if="${editSaleFormBean.id} != null" class="add-product-form">
+				
+				<input type="hidden" id="id" th:field="*{id}">
+				<input type="hidden" id="idSale" th:field="*{idSale}" th:value="${editSaleFormBean.id}">
+				<table style="align-self: center;" class="add-product-table">
+					<tr class="add-product-field" id="product-tr">
+						<td class="add-product-label"><label th:text="'Agregar producto'" /></td>
+						<td class="add-product-input" id="select">
+							<select th:field="*{idProduct}" id="select-menu">
+								<option th:value="''"></option>
+								<option th:each="p : ${allProducts}" 
+									th:value="${p.id}" 
+									th:id="'product_'+${p.id}"
+									th:text="${p.code}+' '+${p.name}" th:class="list"></option>
+							</select>
+						</td>
+					</tr>
+					<tr id="hidden-price" style="display: none;">
+						<td><input class="price-hidden" th:each="p2 : ${allProducts}" type="hidden" th:id="'idPrice_'+${p2.id}" th:value="${p2.price}"></td>
+					</tr>
+					<tr class="add-product-field" id="units-tr">
+						<td class="add-product-label"><label th:text="Unidades" /></td>
+						<td class="add-product-input"><input class="units-input" type="number" th:field="*{units}" th:id="units-input"/></td> 
+					</tr>
+					<tr class="add-product-field" id="subtotal-tr">
+						<td class="add-product-label"><label th:text="Subtotal" /></td>		
+						<td class="add-product-input"><input id="subtotal" type="number" th:field="*{subtotal}" readonly/></td> 
+					</tr>
+					<tr class="add-product-field" id="button-tr">
+						<td><button type="submit" id="add-button" name="editProducts" class="add-product-button" value="add" disabled>Agregar producto</button></td>
+					</tr>
+				</table>
+				<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+				<td th:if="${#fields.hasErrors('idProduct')}"><p  th:errorclass="error" th:errors="*{idProduct}" class="add-product-error"/> </td> 
+				<td th:if="${#fields.hasErrors('units')}"><p th:errorclass="error" th:errors="*{units}" class="add-product-error"/> </td> 
+				<span id="product-error" style="display: none;" class="errors">Seleccione un producto válido.</span>
+				<span id="unit-error" style="display: none;" class="errors">Las unidades deben ser enteros mayores a 0.</span>
+			</form>
+		</div>
+		
+		<div class="list-products">
+			<h3 th:text="'Productos'" th:if="${editSaleFormBean.id} != null" class="list-product-subtitle"/>
+			<table style="align-self: center;" th:if="${editSaleFormBean.id} != null">
+				<thead>
+					<tr>
+						<th id="code-th"><label th:text="Código" class="list-product-th-label"/></th>
+						<th id="name-th"><label th:text="Nombre" class="list-product-th-label"/></th>
+						<th id="price-th"><label th:text="'Precio un.'" class="list-product-th-label"/></th>
+						<th id="units-th"><label th:text="Un." class="list-product-th-label"/></th>
+						<th id="subtotal-th"><label th:text="Subtotal" class="list-product-th-label"/></th>
+						<th id="aux-product-th"><label th:text="''" class="list-product-th-label"/></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ps : ${allProductsSold}" >
+						<td id="code-td" th:text="${{ps.product.code}}" class="list-product-element"></td>
+						<td id="name-td" th:text="${{ps.product.name}}" class="list-product-element"></td>
+						<td id="price-td" th:text="${{ps.product.price}}" class="list-product-element"></td>
+						<td id="units-td" th:text="${{ps.units}}" class="list-product-element"></td>
+						<td id="subtotal-td" th:text="${{ps.subtotal}}" class="list-product-element"></td>
+						<td id="button-product-td" class="list-product-buttons">
+							<button class="button-action"><a th:href="@{/sale/{idSale}/delete?idProductSold={idProductSold}(idProductSold=${ps.id},idSale=${ps.sale.id})}" class="link-product-action delete-action" onclick="return confirm('¿Está seguro que desea eliminar este producto?')">Borrar</a></button>
+						</td>  
+					</tr>
+				</tbody>
+				<tfoot class="total-section">
+					<tr>
+						<td id="aux1" class="aux-td"></td>
+						<td id="aux2" class="aux-td"></td>
+						<td id="aux3" class="aux-td"></td>
+						<td id="total-title" class="aux-td total-title"><label th:text="TOTAL" /></td>
+						<td id="total-list"  class="aux-td total-list" th:text="${total}"></td>
+						<td id="aux4" class="aux-td"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="sale-element">
+			<h3 th:text="${editSaleFormBean.id} ? 'Finalizar venta':'Nueva venta'" class="new-element-subtitle"/>
+			<form  th:action="@{/sale}" th:object="${editSaleFormBean}" method="post" class="new-element-form">
+				
+				<input type="hidden" id="id" th:field="*{id}">
+				<table style="align-self: center;" th:if="${editSaleFormBean.id == null}" class="new-element-inactive-sale">
+					<tr class="new-element-form-field">
+						<td class="new-element-inactive-label-td"><label class="new-element-label" th:text="'Mesa:'" /></td>
+						<td class="new-element-inactive-input-td">
+							<select th:field="*{idBartable}" class="new-element-input">
+								<option th:each="b : ${allBartables}" 
+									th:value="${b.id}" 
+									th:text="${b.number}"></option>
+							</select>
+						</td>	
+						<td class="new-element-inactive-button-td"><button type="submit" name="editSale" value="open" class="open-sale-button">Abrir mesa</button></td>			
+					</tr>
+				</table>
+				<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+				<div class="list-elements" th:if="${editSaleFormBean.id == null}">
+					<h3 th:text="'Lista de mesas'" class="list-elements-subtitle"/>
+					<table style="align-self: center;">
+						<thead>
+							<tr>
+								<th id="number-th"><label th:text="'Número de mesa'" class="table-head-tables"/></th>
+								<th id="total-th"><label th:text="Total" class="table-head-tables"/></th>
+								<th id="aux-th"><label th:text="''" class="table-head-actions"/></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="s : ${allSalesOpen}" >
+								<td id="number-td" th:text="${{s.bartable.number}}" class="list-element"></td>
+								<td id="total2-td" th:text="${{s.total}}" class="list-element"></td>
+								<td id="button-td" class="list-element-buttons">
+									<button class="button-action"><a th:href="@{/sale/{id}/edit(id=${s.id})}" class="link-action">Ver mesa</a></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+				</div>
+				<table class="new-element-active-sale" th:if="${editSaleFormBean.id != null}">
+					<tr class="sale-form-field">
+						<td class="sale-td" id="discount-td">
+							<label class="sale-label" th:text="'Desc. del 20%'" />
+							<input id="checkbox" type="checkbox" th:field="*{discount}" />
+						</td>
+						<td th:if="${editSaleFormBean.id != null}" class="sale-td" id="payment-td">
+							<label class="sale-label" th:text="'Método de pago'" />
+							<select id="payment" th:field="*{idPayment}" class="sale-input">
+								<option th:each="pm : ${allPaymentMethods}" class="payment-option" 
+									th:value="${pm.id}" 
+									th:text="${pm.name}"></option>
+							</select>
+						</td><!--
+						<td class="sale-td" id="total-td">
+							<p th:text="'Total a cobrar: '+${editSaleFormBean.total}"></p>
+						</td>-->
+						<td class="sale-td" id="button-td">
+							<button class="close-sale-button" type="submit" name="editSale" value="close" th:if="${editSaleFormBean.id != null}" />Cerrar mesa</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<script th:src="@{/js/sale.js}"></script>
+</body>
+
+<footer>Megamultiservicios - Gestor de ventas 1.0.0</footer>
+
+</html>	

@@ -1,0 +1,337 @@
+.principal {
+  width: 1000px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.return-link,
+.go-back {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.material-symbols-outlined {
+  color: #e59827;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+  margin: 0;
+}
+
+.principal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 20px 0px 0px 0px;
+}
+
+.filter-sales-subtitle,
+.list-sales-subtitle {
+  text-align: left;
+  margin-top: 10px;
+  width: 100%;
+  font-weight: 700;
+}
+
+.filter-sales {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.filter-sales-form {
+  width: 100%;
+}
+
+.filter-table {
+  margin-top: 10px;
+}
+
+.filter-table,
+.filter-table tbody {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.filter-table-tr {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.filter-table-label,
+.filter-table-input {
+  width: 100%;
+}
+
+.filter-table-input {
+  margin-top: 5px;
+}
+
+#from-tr,
+#to-tr {
+  width: 20%;
+}
+
+#filter-tr {
+  width: 20%;
+}
+
+#order-tr {
+  width: 30%;
+}
+
+.filter-table-input input,
+.filter-table-input select {
+  width: 100%;
+  outline: none;
+  border: solid 1px #484847;
+  border-radius: 8px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.filter-product-buttons,
+.filter-product-buttons tbody,
+.filter-product-buttons-tr {
+  width: 100%;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.filter-product-button {
+  background-color: #e59827;
+  border-radius: 8px;
+  border: none;
+  width: 15%;
+  padding: 5px;
+  color: #fffeee;
+  font-family: "Nunito";
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.errors-dates {
+  color: red;
+  margin-top: 5px;
+}
+
+.list-sales {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.list-sales table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border-left: 1px solid #8b8b8a;
+  border-bottom: 1px solid #8b8b8a;
+  border-right: 1px solid #8b8b8a;
+}
+
+.list-sales table thead {
+  font-weight: 600;
+}
+
+.list-sales table thead tr th {
+  background-color: #e59827;
+  padding: 5px;
+  text-align: center;
+  color: #fffeee;
+  border-right: solid 1px #fffeee;
+  vertical-align: middle;
+}
+
+.list-sales table thead tr th:last-child {
+  border: none;
+}
+
+.list-sales table tbody {
+  display: block;
+  max-height: 200px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.list-sales table thead,
+.list-sales table tfoot,
+.list-sales table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.list-sales-element {
+  width: 20px;
+  padding: 5px;
+  text-align: center;
+  background-color: none;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+#code-th,
+#code-td,
+#aux1 {
+  width: 8%;
+}
+
+#product-th,
+#product-td,
+#aux2 {
+  width: 20%;
+}
+
+#brand-th,
+#brand-td,
+#aux3 {
+  width: 10%;
+}
+
+#category-th,
+#category-td,
+#aux4 {
+  width: 10%;
+}
+
+#units-th,
+#units-td,
+#aux5 {
+  width: 6%;
+}
+
+#disc-th,
+#disc-td,
+#total-disc {
+  width: 12%;
+}
+
+#nondisc-th,
+#nondisc-td,
+#total-nondisc {
+  width: 12%;
+}
+
+#total-th,
+#total-td,
+#total-final {
+  width: 12%;
+}
+
+.list-element-total-section {
+  border-top: 2px solid #8b8b8a;
+  padding: 5px 0;
+}
+
+#total-disc,
+#total-nondisc,
+#total-final {
+  font-weight: 800;
+}
+
+#filtered_by_payment_method {
+  width: 400px;
+}
+
+#filtered_by_payment_method tbody tr td {
+  padding: 5px;
+}
+
+#category-th-c,
+#category-td-c,
+#aux1-c {
+  width: 22%;
+}
+
+#units-th-c,
+#units-td-c,
+#aux2-c {
+  width: 12%;
+}
+
+#disc-th-c,
+#disc-td-c,
+#total-disc-c {
+  width: 22%;
+}
+
+#nondisc-th-c,
+#nondisc-td-c,
+#total-nondisc-c {
+  width: 22%;
+}
+
+#total-th-c,
+#total-td-c,
+#total-final-c {
+  width: 22%;
+}
+
+#total-disc-c,
+#total-nondisc-c,
+#total-final-c {
+  font-weight: 800;
+}
+
+#brand-th-b,
+#brand-td-b,
+#aux1-b {
+  width: 22%;
+}
+
+#units-th-b,
+#units-td-b,
+#aux2-b {
+  width: 12%;
+}
+
+#disc-th-b,
+#disc-td-b,
+#total-disc-b {
+  width: 22%;
+}
+
+#nondisc-th-b,
+#nondisc-td-b,
+#total-nondisc-b {
+  width: 22%;
+}
+
+#total-th-b,
+#total-td-b,
+#total-final-b {
+  width: 22%;
+}
+
+#total-disc-b,
+#total-nondisc-b,
+#total-final-b {
+  font-weight: 800;
+}
+
+#total-payments {
+  font-weight: 800;
+}

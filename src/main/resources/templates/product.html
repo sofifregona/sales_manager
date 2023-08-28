@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales manager - Gestionar productos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/product.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<div class="principal">
+		<header>
+			<a th:href="@{/}" class="return-link">
+				<span class="material-symbols-outlined">west</span>&nbspMenú
+			</a>
+			<div class="starter-template">
+				<img class="logo" th:src="@{/img/logo mega sombra.png}" />
+			</div>
+		</header>
+    
+    	<h3 th:text="'GESTIONAR PRODUCTOS'" class="principal-title"/>
+		<hr>
+		<div class="filter-elements">
+			<h3 th:text="'Aplicar filtro'"  class="filter-elements-subtitle"/>
+			<form th:action="@{/product}" th:object="${findFormBean}" method="post" class="filter-elements-form">	
+				
+				<table style="align-self: center;" class="filter-elements-table">
+					<tbody>
+						<tr class="filter-elements-form-field" id="code-filter">
+							<td><label th:text="'Código:'" class="filter-elements-label"/></td>
+							<td><input type="text" th:field="*{code}" class="filter-elements-input" autocomplete="off"/></td> 		
+						</tr>
+						<tr class="filter-elements-form-field" id="name-filter">
+							<td><label th:text="'Nombre:'" class="filter-elements-label"/></td>
+							<td><input type="text" th:field="*{name}" class="filter-elements-input" autocomplete="off"/></td> 		
+						</tr>
+						<tr class="filter-elements-form-field" id="brand-filter">
+							<td><label th:text="'Marca:'" class="filter-elements-label"/></td>
+							<td>
+								<select th:field="*{idBrand}" class="filter-elements-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="b : ${allBrands}" 
+										th:value="${b.id}" 
+										th:text="${b.name}"></option>
+								</select>
+							</td>				
+						</tr>
+						<tr class="filter-elements-form-field" id="category-filter">
+							<td><label th:text="'Categoría:'" class="filter-elements-label"/></td>
+							<td>
+								<select th:field="*{idCategory}" class="filter-elements-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="c : ${allCategories}" 
+										th:value="${c.id}" 
+										th:text="${c.name}"></option>
+								</select>
+							</td>
+						</tr>
+						<tr class="filter-elements-form-field">
+							<td><button type="submit" name="filter" value="filter_forFind" class="filter-elements-button-form">Filtrar</button></td>
+						</tr>
+						<tr>
+							<td><button type="submit" name="filter" value="return_forFind" class="filter-elements-button-form"/>Ver todo</button></td>
+						</tr>        
+					</tbody>
+					<tfoot class="new-element-form-field-errors">
+						<tr><td><p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error filter-global-error" /></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('code')}" th:errorclass="error" th:errors="*{code	}" class="filter-elements-form-field-error"/></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="filter-elements-form-field-error"/></td></tr>
+					</tfoot>
+				</table>
+				<table class="new-element-buttons">
+					
+				</table>
+			</form>
+		</div>
+		<div class="list-elements">
+			<h3 th:text="'Lista de productos'" class="list-elements-subtitle"/>
+			<table style="align-self: center;">
+				<thead>
+				<tr>
+					<th id="code-th"><label th:text="Código" class="table-head-field"/></th>
+					<th id="name-th"><label th:text="Nombre" class="table-head-field"/></th>
+					<th id="brand-th"><label th:text="Marca" class="table-head-field"/></th>
+					<th id="category-th"><label th:text="Categoría" class="table-head-field"/></th>
+					<th id="price-th"><label th:text="Precio" class="table-head-field"/></th>
+					<th id="action-th"><label th:text="Acciones" class="table-head-actions"/></th>
+					<th id="aux-th"></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${allProducts}" >
+						<td id="code-td" th:text="${{p.code}}" class="list-element"></td>
+						<td id="name-td" th:text="${{p.name}}" class="list-element"></td>
+						<td id="brand-td" th:text="${{p.brand != null ? p.brand.name : ''}}" class="list-element"></td>
+						<td id="category-td" th:text="${{p.category != null ? p.category.name : ''}}" class="list-element"></td>
+						<td id="price-td" th:text="${{p.price}}" class="list-element"></td>
+						<td id="action-td" class="list-element-buttons">
+							<button class="button-action"><a th:href="@{/product/{id}/edit(id=${p.id})}"  class="link-action">Editar</a></button>
+							<button class="button-action"><a th:href="@{/product/{id}/delete(id=${p.id})}"  class="link-action delete-action" onclick="return confirm('¿Está seguro que desea eliminar este producto?')">Borrar</a></button>
+						</td>  
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+		<div class="new-element">
+		    <h3 th:text="${editFormBean.id} ? 'Editar producto':'Registrar producto'" class="new-element-subtitle"/>
+			<form  th:action="@{/product}" th:object="${editFormBean}" method="post" class="new-element-form">
+				
+				<input type="hidden" id="id" th:field="*{id}">
+				<table style="align-self: center;" class="new-element-table">
+					<tbody>
+						<tr class="new-element-form-field" id="code-field">
+							<td><label class="new-element-label" th:text="'Código:'" /></td>
+							<td><input type="number" th:field="*{code}" class="new-element-input" id="code-input" autocomplete="off"/></td> 			            
+						</tr>
+						<tr class="new-element-form-field" id="name-field">
+							<td><label class="new-element-label" th:text="'Nombre:'" /></td>
+							<td><input type="text" th:field="*{name}" class="new-element-input" id="name-input" autocomplete="off"/></td> 			             
+						</tr>
+						<tr class="new-element-form-field" id="brand-field">
+							<td><label class="new-element-label" th:text="'Marca:'" /></td>
+							<td>
+								<select th:field="*{idBrand}" class="new-element-input" id="brand-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="b : ${allBrands}" 
+										th:value="${b.id}" 
+										th:text="${b.name}"></option>
+								</select>
+							</td>				
+						</tr>
+						<tr class="new-element-form-field" id="category-field">
+							<td><label class="new-element-label" th:text="'Categoría:'" /></td>
+							<td>
+								<select th:field="*{idCategory}" class="new-element-input" id="category-input">
+									<option th:value="''" th:text="''"></option>
+									<option th:each="c : ${allCategories}" 
+										th:value="${c.id}" 
+										th:text="${c.name}"></option>
+								</select>
+							</td>
+						</tr>
+						<tr class="new-element-form-field" id="price-field">
+							<td><label class="new-element-label" th:text="'Precio:'" /></td>
+							<td><input type="number" th:field="*{price}" step="0.01" class="new-element-input" id="price-input" autocomplete="off"/></td> 			             
+						</tr>
+					</tbody>
+					<tfoot class="new-element-form-field-errors">
+						<tr><td><p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error new-element-global-error"/></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('code')}" th:errorclass="error" th:errors="*{code}" class="new-element-form-field-error"/></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="new-element-form-field-error"/></td></tr>
+						<tr><td><p th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}" class="new-element-form-field-error"/></td></tr>
+					</tfoot>
+			  	</table>
+			  
+			  	<table class="new-element-buttons">
+			    	<tr>
+				      	<td><button type="submit" name="edit" value="accept_forEdit" class="new-element-button-form">Guardar</button></td>
+				      	<td th:if="${editFormBean.id != null}"><button type="submit" name="edit" value="return_forEdit" class="new-element-button-form"/>Cancelar</button></td>
+			      	</tr>
+				</table>
+			</form>			
+		</div>
+	</div>
+	
+</body>
+
+<footer>Megamultiservicios - Gestor de ventas 1.0.0</footer>
+
+</html>	
