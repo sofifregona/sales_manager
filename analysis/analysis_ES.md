@@ -104,7 +104,7 @@
 
 <h3>Casos de uso:</h3>
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> CreateBrand
 	</td></tr>
 	<tr><td width="600">
@@ -160,7 +160,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> UpdateBrand
 	</td></tr>
 	<tr><td width="600">
@@ -220,7 +220,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> DeleteBrand
 	</td></tr>
 	<tr><td width="600">
@@ -264,7 +264,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> CreateCategory
 	</td></tr>
 	<tr><td width="600">
@@ -317,7 +317,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> UpdateCategory
 	</td></tr>
 	<tr><td width="600">
@@ -373,7 +373,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> DeleteCategory
 	</td></tr>
 	<tr><td width="600">
@@ -417,7 +417,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> CreateProduct
 	</td></tr>
 	<tr><td width="600">
@@ -481,7 +481,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> FilterProduct
 	</td></tr>
 	<tr><td width="600">
@@ -526,7 +526,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> UpdateProduct
 	</td></tr>
 	<tr><td width="600">
@@ -594,7 +594,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> DeleteProcut
 	</td></tr>
 	<tr><td width="600">
@@ -638,7 +638,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> CreateBartable
 	</td></tr>
 	<tr><td width="600">
@@ -691,7 +691,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> UpdateBartable
 	</td></tr>
 	<tr><td width="600">
@@ -748,7 +748,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> DeleteBartable
 	</td></tr>
 	<tr><td width="600">
@@ -791,7 +791,117 @@
 </table>
 
 <table align="center">
+	<tr><td width="600" align="center">
+		<b>Caso de uso:</b> CreatePaymentMethod
+	</td></tr>
 	<tr><td width="600">
+		<b>ID:</b> 14
+	</td></tr>
+	<tr><td width="600">
+		<b>Descripción:</b> El administrador desea crear un nuevo método de pago.
+	</td></tr>
+	<tr><td width="600">
+		<b>Actores principales:</b> Administrador.
+	</td></tr>
+	<tr><td width="600">
+		<b>Actores secundarios:</b> Ninguno.
+	</td></tr>
+	<tr><td width="600">
+		<b>Pre-condiciones:</b> Ninguna.
+	</td></tr>
+	<tr><td width="600">
+		<b>Flujo principal:</b>
+		<ol>
+			<li>En la sección <i>nuevo método de pago</i> se ingresa el nombre del mismo.</li>
+			<li>Se selecciona <i>guardar</i>.</li>
+			<li>Se validan los datos.</li>
+		</ol>
+	</td></tr>
+	<tr><td width="600">
+		<b>Pos-condiciones:</b>
+		<ol>
+			<li>Se crea un nuevo método de pago.</li>
+		</ol>
+	</td></tr>
+	<tr><td width="600">
+		<b>Flujos alternativos:</b>
+		<ol>
+			<li>InactiveElement
+			<ol>
+				<li>El método de pago existe en la base de datos, pero fue dado de baja con anterioridad. Se le vuelve a dar el alta modificando su estado <i>activo</i> a <i>true</i>.</li>
+			</ol></li>
+			<li>InvalidName
+			<ol>
+				<li>El método de pago existe en la base de datos y está activo. Se informa que ya existe un método de pago con dicho nombre y se solicita que se ingrese un nombre válido.</li>
+			</ol></li>
+			<li>EmptyName
+			<ol>
+				<li>Se informa que no puede quedar en blanco el campo <i>nombre</i> y se solicita que se ingrese un nombre válido.</li>
+			</ol></li>
+			<li>Cancel</li>
+		</ol>
+	</td></tr>
+</table>
+
+<table align="center">
+	<tr><td width="600" align="center">
+		<b>Caso de uso:</b> UpdatePaymentMethod
+	</td></tr>
+	<tr><td width="600">
+		<b>ID:</b> 15
+	</td></tr>
+	<tr><td width="600">
+		<b>Descripción:</b> El administrador desea modificar un método de pago.
+	</td></tr>
+	<tr><td width="600">
+		<b>Actores principales:</b> Administrador.
+	</td></tr>
+	<tr><td width="600">
+		<b>Actores secundarios:</b> Ninguno.
+	</td></tr>
+	<tr><td width="600">
+		<b>Pre-condiciones:</b>
+		<ol>
+			<li>El método de pago debe existir.</li>
+		</ol>
+	</td></tr>
+	<tr><td width="600">
+		<b>Flujo principal:</b>
+		<ol>
+			<li>Se selecciona <i>editar</i> en el método de pago que se desea modificar.</li>
+			<li>En la sección <i>editar método de pago</i> se ingresa el nuevo método de pago.</li>
+			<li>Se selecciona <i>guardar</i>.</li>
+			<li>Se validan los datos.</li>
+		</ol>
+	</td></tr>
+	<tr><td width="600">
+		<b>Pos-condiciones:</b>
+		<ol>
+			<li>Se modifica el método de pago seleccionado.</li>
+		</ol>
+	</td></tr>
+	<tr><td width="600">
+		<b>Flujos alternativos:</b>
+		<ol>
+			<li>InactiveElement
+			<ol>
+				<li>El método de pago existe en la base de datos, pero fue dada de baja con anterioridad. Se le vuelve a dar el alta modificando su estado <i>activo</i> a <i>true</i> y se le da la baja lógica al méotod de pago actual.</li>
+			</ol></li>
+			<li>InvalidName
+			<ol>
+				<li>El método de pago existe en la base de datos y está activo. Se informa que ya existe un método de pago con dicho nombre y se solicita que se ingrese un nombre válido.</li>
+			</ol></li>
+			<li>EmptyName
+			<ol>
+				<li>Se informa que no puede quedar en blanco el campo <i>nombre</i> y se solicita que se ingrese un nombre válido.</li>
+			</ol></li>
+			<li>Cancel</li>
+		</ol>
+	</td></tr>
+</table>
+
+<table align="center">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> OpenSale
 	</td></tr>
 	<tr><td width="600">
@@ -835,7 +945,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600 align="center"">
 		<b>Caso de uso:</b> AddProductToSale
 	</td></tr>
 	<tr><td width="600">
@@ -886,7 +996,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> DeleteProductFromSale
 	</td></tr>
 	<tr><td width="600">
@@ -934,7 +1044,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> CloseSale
 	</td></tr>
 	<tr><td width="600">
@@ -978,7 +1088,7 @@
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> ViewSales
 	</td></tr>
 	<tr><td width="600">
@@ -1027,7 +1137,7 @@
 <!--
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Caso de uso:</b> 
 	</td></tr>
 	<tr><td width="600">
@@ -1057,3 +1167,4 @@
 </table>
 
 -->
+
