@@ -1,6 +1,6 @@
 <h2>INTRODUCCIÓN:</h2>
 	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    El presente proyecto tiene por objetivo realizar el análisis, diseño y prototipado de un sistema informático que permita gestionar las ventas del sector de kiosco/bar de la empresa Megamultiservicios para su posterior implementación y testeo.</p>
+    El presente proyecto tiene por objetivo realizar el análisis, diseño y prototipado de un sistema informático que permita gestionar las ventas del sector de kiosco/bar de la empresa M.M. para su posterior implementación y testeo.</p>
 	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     La realización del mismo surge como consecuencia de un problema detectado por los encargados de la empresa, el cual será analizado en profundidad para lograr identificar la solución informática más adecuada.</p>
     <br>
@@ -9,7 +9,7 @@
 
 <h3>Contexto de negocio:</h3>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    La empresa Mega Multiservicios se encuentra localizada en la ciudad de Santa Fe, y se dedica principalmente al lavado de autos y otros tipos de vehículos, actividad que realiza bajo el nombre comercial de Mega Lavaautos. A su vez, dispone de un sector bar que se desempeña como actividad secundaria de la empresa.</p>
+    La empresa M.M. se encuentra localizada en la ciudad de Santa Fe, y se dedica principalmente al lavado de autos y otros tipos de vehículos, actividad que realiza bajo el nombre comercial de M.L.. A su vez, dispone de un sector bar que se desempeña como actividad secundaria de la empresa.</p>
 	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Los clientes del sector bar se dividen en dos tipos, aquellos que acuden al bar con el principal objetivo de consumir alimentos y/o bebidas, y aquellos que ingresan derivados del sector de lavado de autos, a la espera de que finalice el servicio. El bar cuenta con un sector con 18 mesas para los clientes que deseen consumir dentro del establecimiento, pero también es posible realizar pedidos para llevar. Posee tres métodos de pago: efectivo, transferencia bancaria y mercado pago.</p>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
