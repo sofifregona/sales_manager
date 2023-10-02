@@ -6,7 +6,7 @@ This project was carried out as part of a supervised internship for the <a href=
 carreer of the <i>Universidad Tecnológica Nacional, Facultad Regional de Santa Fe</i>.
 <p></p>
 <p><b>Description</b>: Analysis, design, and development of a functional prototype for a Sales Management System for subsequent testing and implementation.</p>
-<p><b>Text</b>: <a href="https://github.com/sofifregona/sales_manager/blob/master/analysis/analysis_EN">Link in english</a>.</p>
+<p><b>Text</b>: <a href="https://github.com/sofifregona/sales_manager/blob/master/analysis/analysis_EN.md">Link in english</a>.</p>
 
 <img src="https://wprock.fr/ezoimgfmt/assets.wprock.fr/emoji/joypixels/512/1f1ea-1f1f8.png?ezimgfmt=ng%3Awebp%2Fngcb25%2Frs%3Adevice%2Frscb25-1" alt="R" width="20" height="20"/> | ES
 <p></p>
