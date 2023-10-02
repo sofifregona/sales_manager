@@ -98,7 +98,7 @@ The logical model of the database is developed through an ER diagram, and based 
 
 <h3>Use Cases:</h3>
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> CreateBrand
 	</td></tr>
 	<tr><td width="600">
@@ -154,7 +154,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> UpdateBrand
 	</td></tr>
 	<tr><td width="600">
@@ -214,7 +214,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> DeleteBrand
 	</td></tr>
 	<tr><td width="600">
@@ -258,7 +258,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> CreateCategory
 	</td></tr>
 	<tr><td width="600">
@@ -311,7 +311,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> UpdateCategory
 	</td></tr>
 	<tr><td width="600">
@@ -367,7 +367,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> DeleteCategory
 	</td></tr>
 	<tr><td width="600">
@@ -411,7 +411,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> CreateProduct
 	</td></tr>
 	<tr><td width="600">
@@ -475,7 +475,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> FilterProduct
 	</td></tr>
 	<tr><td width="600">
@@ -523,7 +523,7 @@ The logical model of the database is developed through an ER diagram, and based 
 	<tr><td width="600">
 		<b>Use Case:</b> UpdateProduct
 	</td></tr>
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>ID:</b> 9
 	</td></tr>
 	<tr><td width="600">
@@ -591,7 +591,7 @@ The logical model of the database is developed through an ER diagram, and based 
 	<tr><td width="600">
 		<b>Use Case:</b> DeleteProduct
 	</td></tr>
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>ID:</b> 10
 	</td></tr>
 	<tr><td width="600">
@@ -632,7 +632,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> CreateBartable
 	</td></tr>
 	<tr><td width="600">
@@ -685,7 +685,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> UpdateBartable
 	</td></tr>
 	<tr><td width="600">
@@ -742,7 +742,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> DeleteBartable
 	</td></tr>
 	<tr><td width="600">
@@ -785,7 +785,117 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+    <tr><td width="600" align="center">
+        <b>Use Case:</b> CreatePaymentMethod
+    </td></tr>
+    <tr><td width="600">
+        <b>ID:</b> 14
+    </td></tr>
+    <tr><td width="600">
+        <b>Description:</b> The administrator wants to create a new payment method.
+    </td></tr>
+    <tr><td width="600">
+        <b>Main Actors:</b> Administrator.
+    </td></tr>
+    <tr><td width="600">
+        <b>Secondary Actors:</b> None.
+    </td></tr>
+    <tr><td width="600">
+        <b>Preconditions:</b> None.
+    </td></tr>
+    <tr><td width="600">
+        <b>Main Flow:</b>
+        <ol>
+            <li>In the <i>new payment method</i> section, enter its name.</li>
+            <li>Select <i>save</i>.</li>
+            <li>Validate the data.</li>
+        </ol>
+    </td></tr>
+    <tr><td width="600">
+        <b>Post-conditions:</b>
+        <ol>
+            <li>A new payment method is created.</li>
+        </ol>
+    </td></tr>
+    <tr><td width="600">
+        <b>Alternative Flows:</b>
+        <ol>
+            <li>InactiveElement
+            <ol>
+                <li>The payment method exists in the database but was previously deactivated. Reactivate it by modifying its <i>active</i> status to <i>true</i>.</li>
+            </ol></li>
+            <li>InvalidName
+            <ol>
+                <li>The payment method exists in the database and is active. Inform that a payment method with the same name already exists and request a valid name input.</li>
+            </ol></li>
+            <li>EmptyName
+            <ol>
+                <li>Inform that the <i>name</i> field cannot be left blank and request a valid name input.</li>
+            </ol></li>
+            <li>Cancel</li>
+        </ol>
+    </td></tr>
+</table>
+
+<table align="center">
+    <tr><td width="600" align="center">
+        <b>Use Case:</b> UpdatePaymentMethod
+    </td></tr>
+    <tr><td width="600">
+        <b>ID:</b> 15
+    </td></tr>
+    <tr><td width="600">
+        <b>Description:</b> The administrator wants to modify a payment method.
+    </td></tr>
+    <tr><td width="600">
+        <b>Main Actors:</b> Administrator.
+    </td></tr>
+    <tr><td width="600">
+        <b>Secondary Actors:</b> None.
+    </td></tr>
+    <tr><td width="600">
+        <b>Preconditions:</b>
+        <ol>
+            <li>The payment method must exist.</li>
+        </ol>
+    </td></tr>
+    <tr><td width="600">
+        <b>Main Flow:</b>
+        <ol>
+            <li>Select <i>edit</i> on the payment method you wish to modify.</li>
+            <li>In the <i>edit payment method</i> section, enter the new payment method.</li>
+            <li>Select <i>save</i>.</li>
+            <li>Validate the data.</li>
+        </ol>
+    </td></tr>
+    <tr><td width="600">
+        <b>Post-conditions:</b>
+        <ol>
+            <li>The selected payment method is modified.</li>
+        </ol>
+    </td></tr>
+    <tr><td width="600">
+        <b>Alternative Flows:</b>
+        <ol>
+            <li>InactiveElement
+            <ol>
+                <li>The payment method exists in the database but was previously deactivated. Reactivate it by modifying its <i>active</i> status to <i>true</i> and logically deactivate the current payment method.</li>
+            </ol></li>
+            <li>InvalidName
+            <ol>
+                <li>The payment method exists in the database and is active. Inform that a payment method with the same name already exists and request a valid name input.</li>
+            </ol></li>
+            <li>EmptyName
+            <ol>
+                <li>Inform that the <i>name</i> field cannot be left blank and request a valid name input.</li>
+            </ol></li>
+            <li>Cancel</li>
+        </ol>
+    </td></tr>
+</table>
+
+<table align="center">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> OpenSale
 	</td></tr>
 	<tr><td width="600">
@@ -829,7 +939,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> AddProductToSale
 	</td></tr>
 	<tr><td width="600">
@@ -880,7 +990,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> DeleteProductFromSale
 	</td></tr>
 	<tr><td width="600">
@@ -928,7 +1038,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> CloseSale
 	</td></tr>
 	<tr><td width="600">
@@ -972,7 +1082,7 @@ The logical model of the database is developed through an ER diagram, and based 
 </table>
 
 <table align="center">
-	<tr><td width="600">
+	<tr><td width="600" align="center">
 		<b>Use Case:</b> ViewSales
 	</td></tr>
 	<tr><td width="600">
