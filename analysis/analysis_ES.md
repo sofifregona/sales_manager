@@ -27,7 +27,7 @@
   <li>No se registra a cuáles ventas se les aplicó el descuento del 20%.</li>
   <li>Los precios de los productos se encuentran detallados en listas impresas que usualmente se pierden o deterioran.</li>
   <li>Cuando los precios aumentan, se imprimen nuevas listas de productos, pero muchas veces no se quita de circulación la lista con precios desactualizados.</li>
-  <li>Los vendedores no suelen utilizar estas listas porque les resultan poco prácticas (debido a la cantidad de productos) y generalmente memorizan los valores de los productos más consumidos. Esto representa un problema si se tiene en cuenta que los precios se actualizan frecuentemente.</li>
+  <li>Los vendedores no suelen utilizar estas listas porque les resultan poco prácticas (debido a la cantidad de productos) y generalmente memorizan los valores de los productos más consumidos. Esto representa un problema si se tiene en cuenta que los precios se actualizan frecuentemente debido a la inflación.</li>
   <li>No se lleva un registro de lo consumido por cada mesa al momento de cobrarles a los clientes. Los vendedores suelen memorizar lo consumido por cada cliente.</li>
 </ul>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,11 +41,11 @@
     <li><b>FUNCIONALES:</b>
       <ol>
         <li>Crear un nuevo producto, asignándole un código, nombre, precio y, si  correspondiera, una marca y una categoría de producto.</li>
-        <li>Filtrar productos por código, nombre, marca y/o categoría.</li>
-        <li>Modificar cualquier campo de un producto.</li>
-        <li>Dar la baja lógica de un producto.</li>
-        <li>Crear una marca asignándole un nombre.</li>
-        <li>Modificar una marca.</li>
+	<li>Filtrar productos por código, nombre, marca y/o categoría.</li>
+	<li>Modificar cualquier campo de un producto.</li>
+	<li>Dar la baja lógica de un producto.</li>
+	<li>Crear una marca asignándole un nombre.</li>
+	<li>Modificar una marca.</li>
         <li>Dar la baja lógica de una marca.</li>
         <li>Crear una nueva categoría de producto asignándole un nombre.</li>
         <li>Modificar una categoría de producto.</li>
@@ -54,7 +54,7 @@
         <li>Modificar una mesa.</li>
         <li>Dar la baja lógica de una mesa.</li>
         <li>Crear un nuevo método de pago asignándole un nombre.</li>
-        <li>Modificar un método de pago.</li>
+	<li>Modificar un método de pago.</li>
         <li>Dar la baja lógica de un método de pago.</li>
         <li>Abrir una nueva venta que registre la fecha y hora y el número de mesa asociado.</li>
         <li>Modificar una venta activa agregando o quitando productos. El total consumido debe calcularse automáticamente.</li>
@@ -66,9 +66,27 @@
     <li><b>NO FUNCIONALES:</b>
       <ol>
         <li>El sistema deberá almacenar los datos en una base de datos de tipo relacional (SQL).</li>
-        <li>El sistema deberá contar con un proceso de autenticación que permita discriminar los roles de “usuario” y “administrador”.</li>
-        <li>Las claves de “usuario” y “administrador” deberán encriptarse en la base de datos.</li>
+        <li>El sistema deberá contar con un proceso de autenticación que permita discriminar los roles de <i>usuario</i> y <i>administrador</i>.</li>
+        <li>Las claves de <i>usuario</i> y <i>administrador</i> deberán encriptarse en la base de datos.</li>
         <li>El sistema deberá contar con una arquitectura MVC (modelo-vista-controlador) desarrollada en el lenguaje Java del lado del servidor (utilizando Hibernate y JPA) y HTML, CSS y JavaScript del lado del cliente.</li>
       </ol>
     </li>
   </ul>
+
+<h3>Clases involucradas:</h3>
+<p>A continuación, se describen las clases que estarán involucradas en el desarrollo del  sistema, con sus respectivos atributos.</p>
+<ul>
+	<li>Marca: id, nombre y activo.</li>
+	<li>Categoría: id, nombre y activo.</li>
+	<li>Producto: id, código, nombre, precio, marca, categoría y activo.</li>
+	<li>Mesa: id, número y activo.</li>
+	<li>Método de pago: id, nombre y activo.</li>
+	<li>Venta: id, fecha y hora, mesa, estado, productos y total.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Los campos con el nombre <i>activo</i> son los que permitirán dar el alta y la baja lógica de los  elementos al asignarles un valor booleano: <i>true</i> si está activo, <i>false</i> si fue dado de baja. </p>
+ 
+<h3>Diagrama entidad relación:</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Se desarrolla el modelo lógico de la base de datos a través de un diagrama ER que  permitirá posteriormente el desarrollo del esquema relacional. </p>
