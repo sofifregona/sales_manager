@@ -48,3 +48,17 @@ header,
 .link-action:visited {
   color: #ffffff;
 }
+
+.setting-button {
+	display: none;
+}
+
+.return-link {
+  display: none;
+  align-items: center;
+  text-decoration: none;
+}
+
+.return-link:visited {
+  color: #e59827;
+}

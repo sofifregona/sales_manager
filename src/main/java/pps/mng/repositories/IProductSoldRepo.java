@@ -77,4 +77,23 @@ public interface IProductSoldRepo extends JpaRepository<ProductSold, Long> {
 		       "ORDER BY units DESC")
 	List<Object[]> filterByBrandUnitsDates(LocalDateTime from, LocalDateTime to);
 	
+	
+	@Query("SELECT ps.sale.id, ps.sale.dateTime, ps.sale.bartable.number, ps.sale.payment.name, "
+			+ "ps.product.name, ps.product.brand.name, ps.product.category.name, ps.product.price, "
+			+ "ps.units, case when ps.sale.discount = 0 then 'no' else 'si' end, ps.subtotal "
+			+ "FROM ProductSold ps "
+			+ "WHERE ps.sale.dateTime >= ?1 AND ps.sale.dateTime < ?2 "
+			+ "order by ps.sale.id")
+	List<Object[]> export(LocalDateTime from, LocalDateTime to);
+	
+	
+	/*
+	@Query("select ps.sale.id, ps.sale.dateTime, ps.sale.bartable.number, ps.sale.payment.name, "
+			+ "ps.product.name, ps.product.brand.name, ps.product.category.name, ps.product.price, "
+			+ "ps.units, case when ps.sale.discount = 0 then 'no' else 'si' end, "
+			+ "ps.subtotal from ProductSold ps "
+			+ "order by s.id")
+	List<Object[]> export();*/
+	
+	
 }

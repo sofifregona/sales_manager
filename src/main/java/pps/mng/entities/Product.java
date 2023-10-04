@@ -25,6 +25,8 @@ public class Product {
 	
 	@ManyToOne
 	private Brand brand;
+	
+	private Boolean active;
 
 	//Getters y setters
 	public Long getId() {
@@ -62,6 +64,12 @@ public class Product {
 	}
 	public void setBrand(Brand brand) {
 		this.brand = brand;
+	}
+	public boolean getActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }

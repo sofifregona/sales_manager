@@ -34,5 +34,4 @@ public interface ISaleRepo extends JpaRepository<Sale, Long> {
 			"GROUP BY s.payment.name " +
 			"ORDER BY s.payment.name ASC")
 	List<Object[]> filterSummaryDates(LocalDateTime from, LocalDateTime to);
-	
 }

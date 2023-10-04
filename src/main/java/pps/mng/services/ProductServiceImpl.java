@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import pps.mng.repositories.IProductRepo;
 import pps.mng.controllers.product.FindProductForm;
+import pps.mng.entities.Payment;
 import pps.mng.entities.Product;
 import pps.mng.exception.Excep;
 
@@ -19,6 +20,14 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAll() {		
 		return repo.findAll();
+	}
+	
+	@Override
+	public void deleteById(Long idProduct) {
+		Product p;
+		p = repo.findById(idProduct).get();
+		p.setActive(false);
+		repo.save(p);
 	}
 
 	@Override
@@ -47,11 +56,6 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			return repo.findByFilter(filter.getName(), filter.getCode(), filter.getIdBrand(), filter.getIdCategory());	
 		}
-	}
-
-	@Override
-	public void deleteById(Long idBrand) {
-		repo.deleteById(idBrand);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 .principal {
   width: 1000px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 header {
@@ -17,7 +19,7 @@ header {
 }
 
 .return-link:visited {
-  color: #e59827
+  color: #e59827;
 }
 
 .material-symbols-outlined {
@@ -44,13 +46,18 @@ header {
   margin-top: 10px;
   width: 100%;
   font-weight: 700;
+  font-size: 15px;
 }
 
 .filter-sales {
-  width: 100%;
+  width: 58%;
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
+}
+
+.payment-list {
+  width: 40%;
 }
 
 .filter-sales-form {
@@ -74,11 +81,13 @@ header {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .filter-table-label,
 .filter-table-input {
   width: 100%;
+  font-size: 14px;
 }
 
 .filter-table-input {
@@ -86,16 +95,10 @@ header {
 }
 
 #from-tr,
-#to-tr {
-  width: 20%;
-}
-
-#filter-tr {
-  width: 20%;
-}
-
+#to-tr,
+#filter-tr,
 #order-tr {
-  width: 30%;
+  width: 48%;
 }
 
 .filter-table-input input,
@@ -103,7 +106,7 @@ header {
   width: 100%;
   outline: none;
   border: solid 1px #484847;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
 }
@@ -112,24 +115,30 @@ header {
 .filter-product-buttons tbody,
 .filter-product-buttons-tr {
   width: 100%;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.filter-product-buttons-tr td {
+  width: 100%;
   text-align: right;
-  margin-top: 10px;
 }
 
 .filter-product-button {
   background-color: #e59827;
   border-radius: 8px;
   border: none;
-  width: 15%;
+  width: 150px;
   padding: 5px;
   color: #fffeee;
   font-family: "Nunito";
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
   cursor: pointer;
+  margin-left: 1%;
 }
 
-.errors-dates {
+.error-dates {
   color: red;
   margin-top: 5px;
 }
@@ -139,16 +148,18 @@ header {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: right;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-.list-sales table {
+.list-sales table,
+.payment-list table {
   margin-top: 10px;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   border-left: 1px solid #8b8b8a;
   border-bottom: 1px solid #8b8b8a;
@@ -159,10 +170,10 @@ header {
   font-weight: 600;
 }
 
-.list-sales table thead tr th {
+.list-sales table thead tr th,
+.payment-list table thead tr th {
   background-color: #e59827;
   padding: 5px;
-  text-align: center;
   color: #fffeee;
   border-right: solid 1px #fffeee;
   vertical-align: middle;
@@ -181,82 +192,121 @@ header {
 
 .list-sales table thead,
 .list-sales table tfoot,
-.list-sales table tbody tr {
+.list-sales table tbody tr,
+.payment-list table thead,
+.payment-list table tfoot,
+.payment-list table tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
+.payment-list table thead tr th:last-child {
+  border: none;
+}
+
 .list-sales-element {
-  width: 20px;
-  padding: 5px;
   text-align: center;
   background-color: none;
-  font-size: 15px;
+  font-size: 14px;
   vertical-align: middle;
+  padding: 5px;
+}
+
+.filter-table-l tbody tr:nth-child(2n) {
+  background-color: #eeeeee;
+}
+
+.filter-table-l {
+  font-size: 14px;
+}
+
+#th-aux {
+  width: 2%;
+}
+
+#td-aux {
+  width: 1%;
 }
 
 #code-th,
 #code-td,
 #aux1 {
-  width: 8%;
+  width: 7%;
+  text-align: left;
 }
 
 #product-th,
 #product-td,
 #aux2 {
-  width: 20%;
+  width: 25%;
+  text-align: left;
 }
 
 #brand-th,
 #brand-td,
 #aux3 {
-  width: 10%;
+  width: 13%;
+  text-align: left;
 }
 
 #category-th,
 #category-td,
 #aux4 {
-  width: 10%;
+  width: 14%;
+  text-align: left;
 }
 
 #units-th,
 #units-td,
 #aux5 {
   width: 6%;
+  text-align: left;
 }
 
 #disc-th,
 #disc-td,
 #total-disc {
-  width: 12%;
+  width: 10%;
+  text-align: left;
 }
 
 #nondisc-th,
 #nondisc-td,
 #total-nondisc {
-  width: 12%;
+  width: 10%;
+  text-align: left;
 }
 
 #total-th,
 #total-td,
 #total-final {
+  width: 14%;
+  text-align: left;
+}
+
+#total-td {
   width: 12%;
 }
 
 .list-element-total-section {
   border-top: 2px solid #8b8b8a;
-  padding: 5px 0;
 }
 
+#aux1,
+#aux2,
+#aux3,
+#aux4,
+#aux5,
 #total-disc,
 #total-nondisc,
 #total-final {
   font-weight: 800;
+  padding: 5px;
 }
 
 #filtered_by_payment_method {
-  width: 400px;
+  width: 100%;
 }
 
 #filtered_by_payment_method tbody tr td {
@@ -265,76 +315,94 @@ header {
 
 #category-th-c,
 #category-td-c,
-#aux1-c {
-  width: 22%;
+#aux1-c,
+#brand-th-b,
+#brand-td-b,
+#aux1-b {
+  width: 23%;
+  text-align: left;
 }
 
 #units-th-c,
 #units-td-c,
-#aux2-c {
-  width: 12%;
-}
-
-#disc-th-c,
-#disc-td-c,
-#total-disc-c {
-  width: 22%;
-}
-
-#nondisc-th-c,
-#nondisc-td-c,
-#total-nondisc-c {
-  width: 22%;
-}
-
-#total-th-c,
-#total-td-c,
-#total-final-c {
-  width: 22%;
-}
-
-#total-disc-c,
-#total-nondisc-c,
-#total-final-c {
-  font-weight: 800;
-}
-
-#brand-th-b,
-#brand-td-b,
-#aux1-b {
-  width: 22%;
-}
-
+#aux2-c,
 #units-th-b,
 #units-td-b,
 #aux2-b {
   width: 12%;
+  text-align: left;
 }
 
+#disc-th-c,
+#disc-td-c,
+#total-disc-c,
 #disc-th-b,
 #disc-td-b,
 #total-disc-b {
-  width: 22%;
+  width: 21%;
+  text-align: left;
 }
 
+#nondisc-th-c,
+#nondisc-td-c,
+#total-nondisc-c,
 #nondisc-th-b,
 #nondisc-td-b,
 #total-nondisc-b {
-  width: 22%;
+  width: 21%;
+  text-align: left;
 }
 
+#total-th-c,
+#total-td-c,
+#total-final-c,
 #total-th-b,
 #total-td-b,
 #total-final-b {
-  width: 22%;
+  width: 24%;
+  text-align: left;
 }
 
+#total-td-c,
+#total-td-b {
+  width: 21%;
+}
+
+#aux1-c,
+#aux2-c,
+#total-disc-c,
+#total-nondisc-c,
+#total-final-c,
+#aux1-b,
+#aux2-b,
 #total-disc-b,
 #total-nondisc-b,
 #total-final-b {
   font-weight: 800;
+  padding: 5px;
 }
 
 #total-payments {
   font-weight: 800;
+}
+
+.filter-table-l {
+  text-align: left;
+}
+
+.th-pm-1,
+.th-pm-2,
+.tf-pm-1,
+.tf-pm-2,
+.td-pm-1,
+.td-pm-2 {
+  width: 50%;
+  padding: 5px;
+  text-align: left;
+}
+
+.export-button {
+  margin-top: 10px;
+  margin-left: 0;
+  width: 150px;
 }

@@ -25,18 +25,23 @@
 			</div>
 		</header>
 
-		<h3 th:text="'MENÚ'" class="principal-title"/>
+		<h3 th:text="'MENÚ PRINCIPAL'" class="principal-title"/>
 		<hr>
-    <div class="menu">
-      <a class="link-action" th:href="@{/sale}"><button class="button-menu">Ventas</button></a>
-      <a class="link-action" th:href="@{/salesview}"><button class="button-menu">Registros</button></a>
-      <a class="link-action" th:href="@{/product}"><button class="button-menu">Gestionar productos</button></a>
-      <a class="link-action" th:href="@{/payment}"><button class="button-menu">Gestionar métodos de pago</button></a>
-      <a class="link-action" th:href="@{/brand}"><button class="button-menu">Gestionar marcas</button></a>
-      <a class="link-action" th:href="@{/bartable}"><button class="button-menu">Gestionar mesas</button></a>
-      <a class="link-action" th:href="@{/category}"><button class="button-menu">Gestionar categorías</button></a>
-    </div>
+	    <div class="menu">
+			<a th:href="@{/}" class="return-link" id="go-back">
+				<span class="material-symbols-outlined">west</span>&nbspMenú Principal
+			</a>
+	      <a class="link-action" th:href="@{/sale}"><button class="button-menu main-button">Ventas</button></a>
+	      <a class="link-action" th:href="@{/salesview}"><button class="button-menu main-button">Registros</button></a>
+	      <a class="link-action" id="settings"><button class="button-menu main-button">Configuración</button></a>
+	      <a class="link-action" th:href="@{/product}"><button class="button-menu setting-button">Gestionar productos</button></a>
+	      <a class="link-action" th:href="@{/payment}"><button class="button-menu setting-button">Gestionar métodos de pago</button></a>
+	      <a class="link-action" th:href="@{/brand}"><button class="button-menu setting-button">Gestionar marcas</button></a>
+	      <a class="link-action" th:href="@{/bartable}"><button class="button-menu setting-button">Gestionar mesas</button></a>
+	      <a class="link-action" th:href="@{/category}"><button class="button-menu setting-button">Gestionar categorías</button></a>
+	    </div>
 	</div>
+	<script th:src="@{/js/index.js}"></script>
 </body>
 
 <footer><p>Megamultiservicios - Gestor de ventas 1.0.0</p>

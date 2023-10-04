@@ -16,6 +16,8 @@ public interface ProductSoldService {
 	
 	List<Object[]> filterDates(LocalDateTime from, LocalDateTime to, String filter, String order) throws Excep;
 	
+	List<Object[]> export(LocalDateTime from, LocalDateTime to);
+	
 	void deleteById(Long idProduct);
 	
 	void save(ProductSold ps);

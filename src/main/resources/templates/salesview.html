@@ -30,6 +30,31 @@
 		
 		<h3 th:text="'VENTAS REGISTRADAS'" class="principal-title"/>
 		<hr>
+
+		<div class="payment-list">
+			<h3 th:text="'Pagos'" class="filter-sales-subtitle" id="payment-title"/>
+			<table class="filter-table-l" id="filtered_by_payment_method" style="align-self: center;">
+				<thead>
+				<tr>
+					<th class="th-pm-1"><label class="th-pm-l" th:text="'Método de pago'" /></th>
+					<th class="th-pm-2"><label class="th-pm-l" th:text="'Total'" /></th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pp : ${summaryFiltered}" >
+						<td class="td-pm-1" th:text="${{pp[0]}}" th:id="${{pp[0]}}"></td>
+						<td class="td-pm-2" th:text="'$ '+${{pp[1]}}"></td>			    
+					</tr>
+				</tbody>
+				<tfoot class="list-element-total-section">
+					<tr>
+						<td class="tf-pm-1"></td>
+						<td class="tf-pm-2" id="total-payments" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
 		<div class="filter-sales">
 			<h3 th:text="'Seleccionar fechas'" class="filter-sales-subtitle"/>
 			<form th:action="@{/salesview}" th:object="${findFormBean}" method="post" class="filter-sales-form">	
@@ -74,17 +99,22 @@
 				<p class="error-dates" id="error_1" style="display: none;">La fecha inicial no puede ser posterior a la fecha final.</p>
 				<p class="error-dates" id="error_2" style="display: none;">La fecha inicial no puede ser posterior a la fecha actual.</p>
 				<p class="error-dates" id="error_3" style="display: none;">La fecha final no puede ser posterior a la fecha actual.</p>
+				<div th:text="${exportData}" class="export-data" style="display:none;"></div>
 				<table class="filter-product-buttons">
 					<tr class="filter-product-buttons-tr" id="button-tr">
-						<td><button class="filter-product-button" type="submit" name="filter_by" value="filter_forFind" />Buscar</button></td>
+						<td>
+							<button class="filter-product-button" type="submit" name="filter_by" value="filter_forFind" />Buscar</button>
+						</td>
 					</tr>        
 				</table>
 			</form>
 		</div>
 		
+		
+
 		<div class="list-sales">
-			<h3 th:text="'Registros'" class="list-sales-subtitle" id="register-title"/>
-			<table id="filtered_by_product" style="align-self: center;" th:if="${findFormBean.filter == 'product'}">
+			<h3 th:text="'Ventas'" class="list-sales-subtitle" id="register-title"/>
+			<table class="filter-table-l" id="filtered_by_product" style="align-self: center;" th:if="${findFormBean.filter == 'product'}">
 				<thead>
 				<tr>
 					<th id="code-th"><label th:text="Código" class="list-sales-th-label"/></th>
@@ -92,9 +122,9 @@
 					<th id="brand-th"><label th:text="Marca" class="list-sales-th-label"/></th>
 					<th id="category-th"><label th:text="Categoría" class="list-sales-th-label"/></th>
 					<th id="units-th"><label th:text="'Un.'" class="list-sales-th-label"/></th>
-					<th id="disc-th"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
-					<th id="nondisc-th"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
-					<th id="total-th"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th"><label th:text="'s/desc.'" class="list-sales-th-label"/></th>
+					<th id="disc-th"><label th:text="'c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th"><label th:text="'Total'" class="list-sales-th-label"/></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -104,9 +134,9 @@
 						<td id="brand-td" th:text="${{sp[3]}}" class="list-sales-element"></td>
 						<td id="category-td" th:text="${{sp[4]}}" class="list-sales-element"></td>
 						<td id="units-td" th:text="${{sp[5]}}" class="list-sales-element"></td>
-						<td id="disc-td" th:text="${{sp[6]}}" class="list-sales-element"></td>
-						<td id="nondisc-td" th:text="${{sp[7]}}" class="list-sales-element"></td>
-						<td id="total-td" th:text="${{sp[8]}}" class="list-sales-element"></td>
+						<td id="nondisc-td" th:text="'$ '+${{sp[6]}}" class="list-sales-element"></td>
+						<td id="disc-td" th:text="'$ '+${{sp[7]}}" class="list-sales-element"></td>
+						<td id="total-td" th:text="'$ '+${{sp[8]}}" class="list-sales-element"></td>
 					</tr>
 				</tbody>
 				<tfoot class="list-element-total-section">
@@ -116,60 +146,60 @@
 						<td id="aux3" class="aux-td"></td>
 						<td id="aux4" class="aux-td"></td>
 						<td id="aux5" class="aux-td"></td>
-						<td id="total-disc" class="aux-td total-disc" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
-						<td id="total-nondisc" class="aux-td total-nondisc" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
-						<td id="total-final" class="aux-td total-final" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+						<td id="total-nondisc" class="aux-td total-disc" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-disc" class="aux-td total-nondisc" th:text="'$ '+${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final" class="aux-td total-final" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
 					</tr>
 				</tfoot>
 			</table>
 			
-			<table id="filtered_by_brand" style="align-self: center;" th:if="${findFormBean.filter == 'brand'}">
+			<table class="filter-table-l" id="filtered_by_brand" style="align-self: center;" th:if="${findFormBean.filter == 'brand'}">
 				<thead>
 				<tr>
 					<th id="brand-th-b"><label th:text="Marca" class="list-sales-th-label"/></th>
 					<th id="units-th-b"><label th:text="'Un.'" class="list-sales-th-label"/></th>
-					<th id="disc-th-b"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
-					<th id="nondisc-th-b"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
-					<th id="total-th-b"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th-b"><label th:text="'s/desc.'" class="list-sales-th-label"/></th>
+					<th id="disc-th-b"><label th:text="'c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th-b"><label th:text="'Total'" class="list-sales-th-label"/></th>
 				</tr>
 				</thead>
 				<tbody>
 					<tr th:each="sp : ${allSalesFiltered}" >
 						<td id="brand-td-b" th:text="${{sp[1] != null ? sp[1] : 'S/Marca'}}" class="list-sales-element"></td>
 						<td id="units-td-b" th:text="${{sp[2]}}" class="list-sales-element" ></td>
-						<td id="disc-td-b" th:text="${{sp[3]}}" class="list-sales-element" ></td>
-						<td id="nondisc-td-b" th:text="${{sp[4]}}" class="list-sales-element" ></td>
-						<td id="total-td-b" th:text="${{sp[5]}}" class="list-sales-element" ></td>	
+						<td id="nondisc-td-b" th:text="'$ '+${{sp[3]}}" class="list-sales-element" ></td>
+						<td id="disc-td-b" th:text="'$ '+${{sp[4]}}" class="list-sales-element" ></td>
+						<td id="total-td-b" th:text="'$ '+${{sp[5]}}" class="list-sales-element" ></td>	
 					</tr>
 				</tbody>
 				<tfoot class="list-element-total-section">
 					<tr>
 						<td id="aux1-b" class="aux-td"></td>
 						<td id="aux2-b" class="aux-td"></td>
-						<td id="total-disc-b" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
-						<td id="total-nondisc-b" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
-						<td id="total-final-b" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+						<td id="total-nondisc-b" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-disc-b" th:text="'$ '+${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final-b" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
 					</tr>
 				</tfoot>
 			</table>		
 			
-			<table id="filtered_by_category" style="align-self: center;" th:if="${findFormBean.filter == 'category'}">
+			<table class="filter-table-l" id="filtered_by_category" style="align-self: center;" th:if="${findFormBean.filter == 'category'}">
 				<thead>
 				<tr>
 					<th id="category-th-c"><label th:text="Categoría" class="list-sales-th-label"/></th>
 					<th id="units-th-c"><label th:text="'Un.'" class="list-sales-th-label"/></th>
-					<th id="disc-th-c"><label th:text="'Ingresos s/desc.'" class="list-sales-th-label"/></th>
-					<th id="nondisc-th-c"><label th:text="'Ingresos c/desc.'" class="list-sales-th-label"/></th>
-					<th id="total-th-c"><label th:text="'Ingresos totales'" class="list-sales-th-label"/></th>
+					<th id="nondisc-th-c"><label th:text="'s/desc.'" class="list-sales-th-label"/></th>
+					<th id="disc-th-c"><label th:text="'c/desc.'" class="list-sales-th-label"/></th>
+					<th id="total-th-c"><label th:text="'Total'" class="list-sales-th-label"/></th>
 				</tr>
 				</thead>
 				<tbody>
 					<tr th:each="sp : ${allSalesFiltered}" >
 						<td id="category-td-c" th:text="${{sp[1] != null ? sp[1] : 'S/Categoría'}}" class="list-sales-element"></td>
 						<td id="units-td-c" th:text="${{sp[2]}}" class="list-sales-element"></td>
-						<td id="disc-td-c" th:text="${{sp[3]}}" class="list-sales-element"></td>
-						<td id="nondisc-td-c" th:text="${{sp[4]}}" class="list-sales-element"></td>
-						<td id="total-td-c" th:text="${{sp[5]}}" class="list-sales-element"></td>
+						<td id="nondisc-td-c" th:text="'$ '+${{sp[3]}}" class="list-sales-element"></td>
+						<td id="disc-td-c" th:text="'$ '+${{sp[4]}}" class="list-sales-element"></td>
+						<td id="total-td-c" th:text="'$ '+${{sp[5]}}" class="list-sales-element"></td>
 						
 					</tr>
 				</tbody>
@@ -177,33 +207,13 @@
 					<tr>
 						<td id="aux1-c" class="aux-td"></td>
 						<td id="aux2-c" class="aux-td"></td>
-						<td id="total-disc-c" class="aux-td total-disc" th:text="${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
-						<td id="total-nondisc-c" class="aux-td total-nondisc" th:text="${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
-						<td id="total-final-c" class="aux-td total-final" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
+						<td id="total-nondisc-c" class="aux-td total-disc" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[1][1] : 0}"></td>
+						<td id="total-disc-c" class="aux-td total-nondisc" th:text="'$ '+${totalFiltered.size() > 0 ? totalFiltered[0][1] : 0}"></td>
+						<td id="total-final-c" class="aux-td total-final" th:text="'$ '+${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
 					</tr>
 				</tfoot>
 			</table>
-
-			<table id="filtered_by_payment_method" style="align-self: center;">
-				<thead>
-				<tr>
-					<th ><label th:text="'Método de pago'" /></th>
-					<th ><label th:text="'Ingresos totales'" /></th>
-				</tr>
-				</thead>
-				<tbody>
-					<tr th:each="pp : ${summaryFiltered}" >
-						<td th:text="${{pp[0]}}" th:id="${{pp[0]}}"></td>
-						<td th:text="${{pp[1]}}"></td>			    
-					</tr>
-				</tbody>
-				<tfoot class="list-element-total-section">
-					<tr>
-						<td></td>
-						<td id="total-payments" th:text="${totalFiltered.size() > 1 ? totalFiltered[0][1] + totalFiltered[1][1] : (totalFiltered.size() > 0 ? totalFiltered[0][1] : 0)}"></td>
-					</tr>
-				</tfoot>
-			</table>	
+			<button class="export-button filter-product-button"/>Exportar datos</button>
 		</div>
 	</div>
 	<script th:src="@{/js/salesview.js}"></script>

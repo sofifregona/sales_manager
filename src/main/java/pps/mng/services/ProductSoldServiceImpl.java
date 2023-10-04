@@ -33,6 +33,11 @@ public class ProductSoldServiceImpl implements ProductSoldService {
 	}
 	
 	@Override
+	public List<Object[]> export(LocalDateTime from, LocalDateTime to) {
+		return repo.export(from, to);
+	}
+	
+	@Override
 	public List<Object[]> filterDates(LocalDateTime from, LocalDateTime to, String filter, String order) throws Excep {
 		
 		if(from != null) {

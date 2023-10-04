@@ -77,6 +77,7 @@ public class EditProductForm {
 		p.setCode(this.getCode());
 		p.setName(this.getName());
 		p.setPrice(this.getPrice());
+		p.setActive(true);
 		return p;
 	}
 }
