@@ -39,7 +39,7 @@ La realizzazione dello stesso nasce come conseguenza di un problema rilevato dai
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Con le informazioni raccolte sono stati stabiliti i seguenti requisiti funzionali e non funzionali:</p>
   <ul>
-    <li><b>REQUISITI FUNZIONALI:</b>
+    <li><b>FUNZIONALI:</b>
       <ol>
         <li>Creare un nuovo prodotto, assegnandogli un codice, un nome, un prezzo e, se applicabile, un marchio e una categoria di prodotto.</li>
 	<li>Filtrare i prodotti per codice, nome, marchio e/o categoria.</li>
@@ -64,7 +64,7 @@ La realizzazione dello stesso nasce come conseguenza di un problema rilevato dai
       </ol>
     </li>
     <br>
-    <li><b>REQUISITI NON FUNZIONALI:</b>
+    <li><b>NON FUNZIONALI:</b>
       <ol>
         <li>Il sistema dovrà archiviare i dati in un database relazionale (SQL).</li>
         <li>Il sistema dovrà disporre di un processo di autenticazione che consenta di distinguere tra i ruoli di <i>utente</i> e <i>amministratore</i>.</li>
