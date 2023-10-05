@@ -1125,3 +1125,11 @@ The logical model of the database is developed through an ER diagram, and based 
 		</ol>
 	</td></tr>
 </table>
+
+<h3>Prototyping:</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	I developed a functional prototype with a scope that comprehends all use cases, initially without making role distinctions.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	In terms of the graphical interface, I took into account certain parameters related to the user experience, such as the use of colors for error messages from validations, the consistent use of the same color palette throughout the system's development, the use of lists with scroll bars to condense information, and the inclusion of a <i>confirm</i> sign when performing logical deletions of objects, among others.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	One of the most important use cases was related to adding new products to an active sale. To facilitate this task for the salespeople, I designed a dynamic filter that allows real-time filtering of products based on their code or name. I also considered the use of keyboard shortcuts to expedite the filling of form fields. Finally, when closing a sale, I decided to include an <i>alert</i> that displays the total amount to be charged to the customer.</p>
