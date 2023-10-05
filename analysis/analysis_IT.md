@@ -88,7 +88,7 @@ La realizzazione dello stesso nasce come conseguenza di un problema rilevato dai
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     I campi con il nome <i>attivo</i> sono quelli che consentiranno l'attivazione e la disattivazione logica degli elementi assegnando loro un valore booleano: <i>true</i> se è attivo, <i>false</i> se è stato disattivato.</p>
 
-    <h3>Diagramma Entità-Relazione e Schema Relazionale del Database:</h3>
+<h3>Diagramma Entità-Relazione e Schema Relazionale del Database:</h3>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Viene sviluppato il modello logico del database attraverso un diagramma ER e, a partire da questo, lo schema relazionale del database.</p>
 
