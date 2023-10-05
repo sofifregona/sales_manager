@@ -1132,6 +1132,16 @@
 	</td></tr>
 </table>
 
+<h3>Prototipado:</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Se lleva a cabo la realización de un prototipo funcional con un alcance que abarque todos los casos de uso pero, inicialmente, sin hacer distinción de roles.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	En relación a lo que será la interfaz gráfica se tuvieron en cuenta ciertos parámetros relacionados con la experiencia de usuario como la utilización de colores para los mensajes de error provenientes de las validaciones, la utilización de una misma paleta de colores a lo largo de todo el desarrollo del sistema, la utilización de listas con scroll bar para comprimir la información, la utilización de un <i>confirm</i> al momento de dar la baja lógica de un objeto, entre otras.</p>
+ 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Uno de los casos de uso más importantes estaba relacionado con la incorporación de nuevos productos a una venta activa. Para facilitar esta labor a los vendedores, se diseñó un filtro dinámico que permite filtrar <i>en tiempo real</i> los productos en función de su código o su nombre. También se tuvo en cuenta la utilización de atajos de teclado para agilizar el llenado de los campos del formulario. Por último, al momento de cerrar la venta, se decidió incorporar un alert que muestre el total que se le debe cobrar al cliente.</p>
 
 
 <!--
