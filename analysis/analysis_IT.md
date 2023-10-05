@@ -1133,3 +1133,11 @@ La realizzazione dello stesso nasce come conseguenza di un problema rilevato dai
 		</ol>
 	</td></tr>
 </table>
+
+<h3>Prototipazione:</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Ho sviluppato un prototipo funzionale con uno scopo che comprende tutti i casi d'uso, inizialmente senza fare distinzioni di ruolo.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Per quanto riguarda l'interfaccia grafica, ho tenuto in considerazione alcuni parametri legati all'esperienza utente, come l'uso dei colori per i messaggi di errore derivanti dalle convalidazioni, l'utilizzo di una stessa tavolozza di colori per l'intero sviluppo del sistema, l'uso di liste con barre di scorrimento per comprimere le informazioni, e l'inclusione di una finestra di dialogo <i>confirm</i> al momento di effettuare eliminazioni logiche di oggetti, tra le altre cose.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Uno dei casi d'uso più importanti era legato all'aggiunta di nuovi prodotti a una vendita attiva. Per agevolare questo compito per i venditori, ho progettato un filtro dinamico che consente di filtrare i prodotti in tempo reale in base al loro codice o nome. Ho anche considerato l'uso di scorciatoie da tastiera per velocizzare il riempimento dei campi del modulo. Infine, al momento di chiudere una vendita, ho deciso di includere un <i>alert</i> che mostra l'importo totale da addebitare al cliente.</p>
